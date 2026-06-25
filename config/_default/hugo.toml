@@ -3,6 +3,9 @@ baseURL = "https://nguyenminhtinh31204.github.io/Serverless-AI-Invoice-Scanner/"
 # Change the default theme to be use when building the site with Hugo
 theme = "hugo-theme-learn"
 
+# Fix image paths when site is deployed in a subdirectory
+canonifyURLs = true
+
 # For search functionality
 [outputs]
 home = [ "HTML", "RSS", "JSON"]
