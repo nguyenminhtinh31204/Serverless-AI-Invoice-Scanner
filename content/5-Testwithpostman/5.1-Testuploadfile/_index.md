@@ -87,19 +87,19 @@ We will use the online tool [base64-image.de](https://www.base64-image.de/):
 
 6. Navigate to the **Stages** section.
 
-![PostInvoiceAPI](</images/4.deployingapigatewayandfrontend/4.4/image(1).png>)
+![PostInvoiceAPI](/images/4.deployingapigatewayandfrontend/4.4/image%281%29.png)
 
-7. Click the **“+”** button to reveal the full URL.
+7. Click the **"+"** button to reveal the full URL.
 
-![PostInvoiceAPI](</images/4.deployingapigatewayandfrontend/4.4/image(2).png>)
+![PostInvoiceAPI](/images/4.deployingapigatewayandfrontend/4.4/image%282%29.png)
 
 8. Select the **POST** method and copy the **Invoke URL**.
 
-![PostInvoiceAPI](</images/4.deployingapigatewayandfrontend/4.4/image(3).png>)
+![PostInvoiceAPI](/images/4.deployingapigatewayandfrontend/4.4/image%283%29.png)
 
 9. Paste the **Invoke URL** into Postman as shown:
 
-![PostInvoiceAPI](</images/4.deployingapigatewayandfrontend/4.4/image(4).png>)
+![PostInvoiceAPI](/images/4.deployingapigatewayandfrontend/4.4/image%284%29.png)
 
 10. Go to the **Headers** tab and configure as follows:
 
@@ -107,11 +107,11 @@ We will use the online tool [base64-image.de](https://www.base64-image.de/):
 Content-Type: application/json
 ```
 
-![PostInvoiceAPI](</images/4.deployingapigatewayandfrontend/4.4/image(5).png>)
+![PostInvoiceAPI](/images/4.deployingapigatewayandfrontend/4.4/image%285%29.png)
 
 11. Navigate to the **Body** tab → Select **raw** → Choose **JSON**.
 
-![PostInvoiceAPI](</images/4.deployingapigatewayandfrontend/4.4/image(6).png>)
+![PostInvoiceAPI](/images/4.deployingapigatewayandfrontend/4.4/image%286%29.png)
 
 12. Paste the following **JSON** into Postman:
 
@@ -122,26 +122,26 @@ Content-Type: application/json
 }
 ```
 
-![PostInvoiceAPI](</images/4.deployingapigatewayandfrontend/4.4/image(7).png>)
+![PostInvoiceAPI](/images/4.deployingapigatewayandfrontend/4.4/image%287%29.png)
 
 13. Paste the Base64 string saved earlier in Notepad and specify the filename as follows:
 
-![PostInvoiceAPI](</images/4.deployingapigatewayandfrontend/4.4/image(8).png>)
+![PostInvoiceAPI](/images/4.deployingapigatewayandfrontend/4.4/image%288%29.png)
 
-![PostInvoiceAPI](</images/4.deployingapigatewayandfrontend/4.4/image(9).png>)
+![PostInvoiceAPI](/images/4.deployingapigatewayandfrontend/4.4/image%289%29.png)
 
 14. Click the **Send** button to view the results.
 
-![PostInvoiceAPI](</images/4.deployingapigatewayandfrontend/4.4/image(10).png>)
+![PostInvoiceAPI](/images/4.deployingapigatewayandfrontend/4.4/image%2810%29.png)
 
 15. A successful response will appear as follows:
 
-![PostInvoiceAPI](</images/4.deployingapigatewayandfrontend/4.4/image(11).png>)
+![PostInvoiceAPI](/images/4.deployingapigatewayandfrontend/4.4/image%2811%29.png)
 
 16. Go to **S3** → Navigate to the `uploads/` folder → Verify the uploaded file.
 
-![PostInvoiceAPI](</images/4.deployingapigatewayandfrontend/4.4/image(12).png>)
+![PostInvoiceAPI](/images/4.deployingapigatewayandfrontend/4.4/image%2812%29.png)
 
 17. Access **DynamoDB** → Select **Explore items** → Choose the **InvoiceData** table.
 
-![PostInvoiceAPI](</images/4.deployingapigatewayandfrontend/4.4/image(13).png>)
+![PostInvoiceAPI](/images/4.deployingapigatewayandfrontend/4.4/image%2813%29.png)
