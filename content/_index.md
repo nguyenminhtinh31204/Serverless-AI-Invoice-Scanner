@@ -8,47 +8,82 @@ chapter: false
 
 ### Overview
 
-In this lab, you will build an AI-powered invoice scanning system using a Serverless architecture on AWS. The application allows users to upload invoices, extract data using Amazon Textract, analyze and normalize the data with Amazon Bedrock, store it in Amazon DynamoDB, and access it through API Gateway.
+In this lab, you will build an AI-powered invoice scanning system using a serverless architecture on AWS. The application allows users to upload invoice files, store them in Amazon S3, extract text and structured information using Amazon Textract, normalize the extracted data with the OpenAI API, store the final invoice records in Amazon DynamoDB, and access the data through Amazon API Gateway.
 
-The frontend is deployed on AWS Amplify, supporting authentication and authorization with Amazon Cognito. The system is monitored using CloudWatch.
+The frontend is deployed using AWS Amplify Hosting and uses Amazon Cognito for user sign-in and sign-up. The system also uses Amazon CloudWatch to monitor logs and troubleshoot backend processing issues.
 
-![ConnectPrivate](/images/arc-logg.png)
+{{% notice info %}}
+In this project, the AI data normalization step uses the OpenAI API instead of Amazon Bedrock. The OpenAI API key should be stored securely on the backend, such as in Lambda environment variables or AWS Secrets Manager, and should not be exposed in the frontend.
+{{% /notice %}}
+
+![Architecture Diagram](/images/architecture-log.png)
+
+---
 
 #### Amazon S3
 
-Amazon S3 (Simple Storage Service) is AWS’s object storage service used to store invoice files and related documents. It ensures high data durability, flexible scalability, and fast access from anywhere.
+Amazon S3 (Simple Storage Service) is AWS’s object storage service used to store uploaded invoice files. In this system, invoice files are uploaded to an S3 bucket, usually under the `uploads/` folder. After a file is uploaded, an S3 event can trigger a Lambda function to start the invoice processing workflow.
 
 #### Amazon Textract
 
-Amazon Textract is an AI service for extracting text, tables, and structured data from invoices. Textract eliminates manual data entry and speeds up the digitization process.
+Amazon Textract is an AI service that extracts text, tables, forms, and structured data from documents such as invoices. In this system, Textract is used to read invoice content and reduce manual data entry.
 
-#### Amazon Bedrock
+#### OpenAI API
 
-Amazon Bedrock is a serverless AI model service used to analyze, interpret, and normalize invoice data. It enables advanced information processing without managing AI infrastructure.
+The OpenAI API is used to analyze and normalize the text extracted by Amazon Textract. It helps convert raw OCR text into structured invoice data such as customer name, invoice number, invoice date, total amount, currency, and line-item information.
+
+{{% notice warning %}}
+The OpenAI API is an external service and is not part of the AWS Cloud. The API key must be stored securely on the backend and should never be placed in React source code or public repositories.
+{{% /notice %}}
 
 #### AWS Lambda
 
-AWS Lambda is a serverless computing service that runs code to handle events such as invoice uploads, data extraction, and storage without the need to manage servers.
+AWS Lambda is a serverless compute service that runs backend logic without requiring server management. In this project, Lambda functions are used to handle invoice uploads, process uploaded files, call Amazon Textract and the OpenAI API, and manage invoice data stored in DynamoDB.
+
+The system uses several Lambda functions, such as:
+
+- `UploadInvoiceFileFunction`
+- `ProcessInvoiceFunction`
+- `InvoiceManagementFunction`
 
 #### Amazon DynamoDB
 
-Amazon DynamoDB is a fully managed NoSQL database used to store invoice data after it has been extracted and analyzed. DynamoDB offers fast performance, automatic scaling, and high reliability.
+Amazon DynamoDB is a fully managed NoSQL database used to store invoice data after it has been extracted and normalized. In this system, DynamoDB stores information such as invoice ID, customer name, invoice number, invoice date, total amount, currency, tags, starred status, and extracted invoice details.
 
 #### Amazon API Gateway
 
-Amazon API Gateway is a service for creating, managing, and securing APIs. In this system, it provides APIs for uploading invoice files and retrieving stored data.
+Amazon API Gateway is used to create and manage REST API endpoints for the application. In this system, API Gateway exposes endpoints for uploading invoice files, retrieving invoices, searching invoices, and updating invoice metadata such as tags and starred status.
+
+Example API routes include:
+
+```txt
+POST /uploads
+GET /invoice
+GET /invoice/{id}
+GET /invoice?name=<customer_name>
+PATCH /invoice/tags/{id}
+PATCH /invoice/starred/{id}
+```
+
+{{% notice info %}}
+API Gateway is only protected by Amazon Cognito if a Cognito Authorizer is explicitly configured. If the API routes are not connected to a Cognito Authorizer, Cognito only protects frontend sign-in and sign-up.
+{{% /notice %}}
 
 #### Amazon Cognito
 
-Amazon Cognito is a user authentication and authorization service. It provides secure sign-in for the frontend application and integrates seamlessly with API Gateway and other AWS services.
+Amazon Cognito is used to provide user authentication for the frontend application. It allows users to sign up, sign in, and access the React application securely. The frontend uses Cognito User Pool configuration such as User Pool ID, App Client ID, and AWS Region.
 
-#### AWS Amplify
+#### AWS Amplify Hosting
 
-AWS Amplify is a frontend development and deployment platform that helps build modern user interfaces and connect directly to backend APIs. The application’s frontend is deployed using Amplify.
+AWS Amplify Hosting is used to build and deploy the React frontend application. The frontend is connected to a GitHub repository and uses environment variables to connect to Cognito and API Gateway endpoints.
+
+In this project, Amplify is used for hosting only. Cognito and backend resources are configured separately through the AWS Console.
 
 #### Amazon CloudWatch
 
-Amazon CloudWatch is a monitoring service that collects and analyzes logs, metrics, and events from all system components. It helps monitor performance and provides early alerts for potential issues.
+Amazon CloudWatch is a monitoring and logging service used to collect logs from Lambda functions and API Gateway. It helps troubleshoot errors related to file upload, invoice processing, Textract extraction, OpenAI API calls, DynamoDB operations, and CORS issues.
+
+---
 
 ### Content
 
@@ -58,5 +93,4 @@ Amazon CloudWatch is a monitoring service that collects and analyzes logs, metri
 4. [Deploying API Gateway](4-Deployingapigateway/)
 5. [Test with Postman](5-Testwithpostman/)
 6. [Deploying Frontend](6-Deployingfrontend/)
-7. [End-to-End Hands-on](7-Endtoendhandson/)
-8. [Resource Cleanup](8-Cleanup/)
+7. [Resource Cleanup](7-Cleanup/)

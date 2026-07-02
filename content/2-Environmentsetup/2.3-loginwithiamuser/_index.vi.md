@@ -59,26 +59,26 @@ Thông tin này thường được cung cấp cho bạn qua email hoặc file đ
 
 -   Sau đó nhấn nút **Sign in** để vào hệ thống.
 
-![IAM User](/images/2.environmentsetup/2.3-loginwithiamuser/005-loginwithiamuser.png)
+![IAM User](/images/2.environmentsetup/2.3-loginwithiamuser/004-loginwithiamuser.png)
 
 ---
 
-#### Bước 5: Chỉnh lại Region về N. Virginia
+#### Bước 5: Chỉnh lại Region về Singapore
 
 -   Sau khi đăng nhập thành công vào AWS Management Console:
 
     -   Nhìn lên **góc trên bên phải** màn hình.
     -   Nhấn vào tên Region hiện tại.
-    -   Chọn lại **N. Virginia** (us-east-1).
+    -   Chọn lại **Singapore** (ap-southeast-1).
 
-![IAM User](/images/2.environmentsetup/2.3-loginwithiamuser/004-loginwithiamuser.png)
+![IAM User](/images/2.environmentsetup/2.3-loginwithiamuser/005-loginwithiamuser.png)
 
 {{% notice info %}}
-Toàn bộ tài nguyên của hệ thống sẽ được triển khai tại Region **us-east-1 (N. Virginia)**. Hãy đảm bảo bạn đang thao tác tại đúng khu vực này.
+Toàn bộ tài nguyên của hệ thống sẽ được triển khai tại Region **ap-southeast-1(Singapore)**. Hãy đảm bảo bạn đang thao tác tại đúng khu vực này.
 {{% /notice %}}
 
 ---
 
 #### Kết luận
 
-Bạn đã hoàn tất việc đăng nhập vào IAM User. Ở bước tiếp theo, bạn sẽ tiến hành tạo S3 Bucket tại Region **us-east-1**.
+Bạn đã hoàn tất việc đăng nhập vào IAM User. Ở bước tiếp theo, bạn sẽ tiến hành tạo S3 Bucket tại Region **ap-southeast-1**.

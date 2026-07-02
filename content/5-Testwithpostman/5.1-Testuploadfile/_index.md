@@ -15,9 +15,9 @@ pre: " <b> 5.1 </b> "
 
 Download the following files before testing the API in Postman:
 
--   [demo_invoice.png](https://drive.google.com/uc?export=download&id=1p_sRXNN9saZLPYJNATZNqV-NmydsUo3L)
--   [demo_invoice2.png](https://drive.google.com/uc?export=download&id=1D-5nvOvdM2Fo2hBTDICTgE8xY-kg7vvY)
--   [demo_invoice3.png](https://drive.google.com/uc?export=download&id=1h_4q-1Xy-MSuwAqXW7D4oTTsnjdn0USh)
+-   [demo_invoice.png](https://drive.google.com/file/d/1dfUxrk25_8P8qMZdeCmW4zMgNytbAY9g/view?usp=sharing)
+-   [demo_invoice2.png](https://drive.google.com/file/d/1ReJLbCDdwmoLhXCMoQCI5xkiYbB26Qr-/view?usp=drive_link)
+-   [demo_invoice3.png](https://drive.google.com/file/d/1lzjOO_6T_oH12_v2kbTzY2BsVO3I2xyF/view?usp=drive_link)
 
 ---
 
@@ -27,19 +27,19 @@ We will use the online tool [base64-image.de](https://www.base64-image.de/):
 
 1. Visit the website and select the file **demo_invoice.png**.
 
-![Website base64-image.de](/images/4.deployingapigatewayandfrontend/4.3-testwithpostman/001-websitebase64.png)
+![Website base64-image.de](/images/5/5.1-testwithpostman/001-websitebase64.png)
 
 2. The website will automatically convert it to Base64.
 
-![Convert to Base64](/images/4.deployingapigatewayandfrontend/4.3-testwithpostman/002-convert-to-base64.png)
+![Convert to Base64](/images/5/5.1-testwithpostman/002-convert-to-base64.png)
 
-3. Click **</> show code** to retrieve the Base64 string.
+3. Click **</> Code** to retrieve the Base64 string.
 
-![Click show code](/images/4.deployingapigatewayandfrontend/4.3-testwithpostman/003-click-show-code.png)
+![Click show code](/images/5/5.1-testwithpostman/003-click-show-code.png)
 
 4. Copy the Base64 code.
 
-![Copy Base64](/images/4.deployingapigatewayandfrontend/4.3-testwithpostman/004-copy-base64.png)
+![Copy Base64](/images/5/5.1-testwithpostman/004-copy-base64.png)
 
 5. Save it temporarily in Notepad.
 
@@ -51,19 +51,19 @@ We will use the online tool [base64-image.de](https://www.base64-image.de/):
 
 1. Open the Postman application.
 
-![Postman](/images/4.deployingapigatewayandfrontend/4.3-testwithpostman/005-postman.png)
+![Postman](/images/5/5.1-testwithpostman/postman.png)
 
 2. Click the **"+"** button to create a new collection.
 
-![Create new collection](/images/4.deployingapigatewayandfrontend/4.3-testwithpostman/006-create-new-collection.png)
+![Create new collection](/images/5/5.1-testwithpostman/006-create-new-collection.png)
 
 3. Select **Blank Collection**.
 
-![Blank collection](/images/4.deployingapigatewayandfrontend/4.3-testwithpostman/007-blank-collection.png)
+![Blank collection](/images/5/5.1-testwithpostman/007-blank-collection.png)
 
 4. Name it: `InvoiceUploadAPI-Tests`
 
-![Rename collection](/images/4.deployingapigatewayandfrontend/4.3-testwithpostman/008-rename-collection.png)
+![Rename collection](/images/5/5.1-testwithpostman/008-rename-collection.png)
 
 ---
 
@@ -71,35 +71,35 @@ We will use the online tool [base64-image.de](https://www.base64-image.de/):
 
 1. Inside the newly created collection, click the **"+"** button to add a request.
 
-![Create request](/images/4.deployingapigatewayandfrontend/4.3-testwithpostman/009-create-request.png)
+![Create request](/images/5/5.1-testwithpostman/009-create-request.png)
 
 2. Name the request: `Upload Invoice`.
 
-![Rename request](/images/4.deployingapigatewayandfrontend/4.3-testwithpostman/010-rename-request.png)
+![Rename request](/images/5/5.1-testwithpostman/010-rename-request.png)
 
 3. Select the **POST** method.
 
-![Choose method post](/images/4.deployingapigatewayandfrontend/4.3-testwithpostman/011-choose-method-post.png)
+![Choose method post](/images/5/5.1-testwithpostman/011-choose-method-post.png)
 
 5. Go to API Gateway, select the API: `PostInvoiceAPI`.
 
-![PostInvoiceAPI](/images/4.deployingapigatewayandfrontend/4.4/image.png)
+![PostInvoiceAPI](/images/5/5.1-testwithpostman/image.png)
 
 6. Navigate to the **Stages** section.
 
-![PostInvoiceAPI](/images/4.deployingapigatewayandfrontend/4.4/image%281%29.png)
+![PostInvoiceAPI](/images/5/5.1-testwithpostman/012.png)
 
 7. Click the **"+"** button to reveal the full URL.
 
-![PostInvoiceAPI](/images/4.deployingapigatewayandfrontend/4.4/image%282%29.png)
+![PostInvoiceAPI](/images/5/5.1-testwithpostman/013.png)
 
 8. Select the **POST** method and copy the **Invoke URL**.
 
-![PostInvoiceAPI](/images/4.deployingapigatewayandfrontend/4.4/image%283%29.png)
+![PostInvoiceAPI](/images/5/5.1-testwithpostman/014.png)
 
 9. Paste the **Invoke URL** into Postman as shown:
 
-![PostInvoiceAPI](/images/4.deployingapigatewayandfrontend/4.4/image%284%29.png)
+![PostInvoiceAPI](/images/5/5.1-testwithpostman/015.png)
 
 10. Go to the **Headers** tab and configure as follows:
 
@@ -107,11 +107,11 @@ We will use the online tool [base64-image.de](https://www.base64-image.de/):
 Content-Type: application/json
 ```
 
-![PostInvoiceAPI](/images/4.deployingapigatewayandfrontend/4.4/image%285%29.png)
+![PostInvoiceAPI](/images/5/5.1-testwithpostman/016.png)
 
 11. Navigate to the **Body** tab → Select **raw** → Choose **JSON**.
 
-![PostInvoiceAPI](/images/4.deployingapigatewayandfrontend/4.4/image%286%29.png)
+![PostInvoiceAPI](/images/5/5.1-testwithpostman/017.png)
 
 12. Paste the following **JSON** into Postman:
 
@@ -122,26 +122,25 @@ Content-Type: application/json
 }
 ```
 
-![PostInvoiceAPI](/images/4.deployingapigatewayandfrontend/4.4/image%287%29.png)
+![PostInvoiceAPI](/images/5/5.1-testwithpostman/018.png)
 
 13. Paste the Base64 string saved earlier in Notepad and specify the filename as follows:
 
-![PostInvoiceAPI](/images/4.deployingapigatewayandfrontend/4.4/image%288%29.png)
-
-![PostInvoiceAPI](/images/4.deployingapigatewayandfrontend/4.4/image%289%29.png)
+![PostInvoiceAPI](/images/5/5.1-testwithpostman/019.png)
+![PostInvoiceAPI](/images/5/5.1-testwithpostman/020.png)
 
 14. Click the **Send** button to view the results.
 
-![PostInvoiceAPI](/images/4.deployingapigatewayandfrontend/4.4/image%2810%29.png)
+![PostInvoiceAPI](/images/5/5.1-testwithpostman/021.png)
 
 15. A successful response will appear as follows:
 
-![PostInvoiceAPI](/images/4.deployingapigatewayandfrontend/4.4/image%2811%29.png)
+![PostInvoiceAPI](/images/5/5.1-testwithpostman/022.png)
 
 16. Go to **S3** → Navigate to the `uploads/` folder → Verify the uploaded file.
 
-![PostInvoiceAPI](/images/4.deployingapigatewayandfrontend/4.4/image%2812%29.png)
+![PostInvoiceAPI](/images/5/5.1-testwithpostman/023.png)
 
 17. Access **DynamoDB** → Select **Explore items** → Choose the **InvoiceData** table.
 
-![PostInvoiceAPI](/images/4.deployingapigatewayandfrontend/4.4/image%2813%29.png)
+![PostInvoiceAPI](/images/5/5.1-testwithpostman/024.png)

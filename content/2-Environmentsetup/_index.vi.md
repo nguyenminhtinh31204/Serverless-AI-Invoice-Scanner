@@ -16,4 +16,4 @@ Trong phần này, bạn sẽ thiết lập các tài nguyên cần thiết cho 
 -   [Đăng nhập IAM User](2.3-loginwithiamuser/)
 -   [Tạo S3 Bucket](2.4-creates3bucketforinvoices/)
 -   [Tạo DynamoDB Table](2.5-createdynamodbtableforinvoices/)
--   [Kích hoạt Nova Pro](2.6-requestnovaproaccess/)
+

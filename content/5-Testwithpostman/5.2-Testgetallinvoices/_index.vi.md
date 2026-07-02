@@ -67,6 +67,6 @@ pre: " <b> 5.2 </b> "
 
 14. Kết quả trả về thành công như sau:
 
-![Test get all invoices](/images/5/5.2/Screenshot_15.png)
+![Test get all invoices](/images/5/5.2/Screenshot_13.png)
 
 > Kiểm tra nếu đủ 3 hóa đơn tức là thành công ✅

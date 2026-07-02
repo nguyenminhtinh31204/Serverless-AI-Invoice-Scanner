@@ -38,7 +38,7 @@ pre: " <b> 5.3 </b> "
 10. Xóa `{id}` trong API endpoint của Postman và thay bằng ID Invoice trong DynamoDB:
 
 ```bash
-https://x4uqolxky6.execute-api.us-east-1.amazonaws.com/dev/invoice/<InvoiceId_trong_DynamoDB>
+https://pwxyscvv7i.execute-api.ap-southeast-1.amazonaws.com/dev/invoice/<InvoiceId_trong_DynamoDB>
 ```
 
 ![Test get all invoices by ID](/images/5/5.3/Screenshot_7.png)

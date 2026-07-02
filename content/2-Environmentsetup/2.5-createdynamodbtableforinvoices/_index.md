@@ -18,7 +18,7 @@ In this step, you will create a **DynamoDB Table** to store invoice information 
 ![Open DynamoDB](/images/2.environmentsetup/2.5-createdynamodb/001-opendynamodb.png)
 
 {{% notice info %}}
-💡 **Note:** Before clicking **Create table**, make sure you have selected the correct **region as US East (N. Virginia) (us-east-1)** in the upper right corner of the AWS Console screen.
+💡 **Note:** Before clicking **Create table**, make sure you have selected the correct **region as ap-southeast-1(Singapore)** in the upper right corner of the AWS Console screen.
 
 {{% /notice %}}
 
@@ -65,7 +65,7 @@ Once the **InvoiceData** table is successfully created, you will add two seconda
 
 2. Click **Create index**.
 
-![Create Index](/images/2.environmentsetup/2.5-createynamodb/007-createindex.png)
+![Create Index](/images/2.environmentsetup/2.5-createdynamodb/007-createindex.png)
 
 3. Configuration:
 
@@ -74,9 +74,9 @@ Once the **InvoiceData** table is successfully created, you will add two seconda
 -   **Sort key**: _(leave blank)_
 -   **Projected attributes**: select **All**
 
-![GSI 1](/images/2.environmentsetup/2.5-createynamodb/008-gsi1.png)
+![GSI 1](/images/2.environmentsetup/2.5-createdynamodb/008-gsi1.png)
 
-![GSI 1](/images/2.environmentsetup/2.5-createynamodb/009-gsi1.png)
+![GSI 1](/images/2.environmentsetup/2.5-createdynamodb/009-gsi1.png)
 
 4. Click **Create index**.
 
@@ -88,7 +88,7 @@ Once the **InvoiceData** table is successfully created, you will add two seconda
 
 1. Click **Create index** again to create the second GSI.
 
-![GSI 2](/images/2.environmentsetup/2.5-createynamodb/011-gsi2.png)
+![GSI 2](/images/2.environmentsetup/2.5-createdynamodb/011-gsi2.png)
 
 2. Configuration:
 
@@ -97,9 +97,9 @@ Once the **InvoiceData** table is successfully created, you will add two seconda
 -   **Index name**: `StarredInvoicesIndex`
 -   **Projected attributes**: select **All**
 
-![GSI 2](/images/2.environmentsetup/2.5-createynamodb/012-gsi2.png)
+![GSI 2](/images/2.environmentsetup/2.5-createdynamodb/012-gsi2.png)
 
-![GSI 2](/images/2.environmentsetup/2.5-createynamodb/013-gsi2.png)
+![GSI 2](/images/2.environmentsetup/2.5-createdynamodb/013-gsi2.png)
 
 3. Click **Create index**.
 

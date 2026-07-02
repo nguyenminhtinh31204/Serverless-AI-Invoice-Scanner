@@ -91,7 +91,11 @@ Trong bước này, bạn sẽ tạo 2 IAM Policy cần thiết cho hệ thống
         {
             "Sid": "CognitoPowerUser",
             "Effect": "Allow",
-            "Action": ["cognito-idp:*", "cognito-sync:*", "cognito-identity:*"],
+            "Action": [
+                "cognito-idp:*",
+                "cognito-sync:*",
+                "cognito-identity:*"
+            ],
             "Resource": "*"
         },
         {
@@ -109,7 +113,6 @@ Trong bước này, bạn sẽ tạo 2 IAM Policy cần thiết cho hệ thống
                 "iam:GetPolicyVersion",
                 "iam:GetRole",
                 "iam:ListRoles",
-                "iam:PassRole",
                 "iam:ListPolicies",
                 "iam:AttachRolePolicy",
                 "iam:ListRolePolicies",
@@ -125,6 +128,17 @@ Trong bước này, bạn sẽ tạo 2 IAM Policy cần thiết cho hệ thống
                 "iam:UpdateRole"
             ],
             "Resource": "*"
+        },
+        {
+            "Sid": "StrictPassRoleForLambda",
+            "Effect": "Allow",
+            "Action": "iam:PassRole",
+            "Resource": "*",
+            "Condition": {
+                "StringEquals": {
+                    "iam:PassedToService": "lambda.amazonaws.com"
+                }
+            }
         },
         {
             "Sid": "AllowValidatePolicy",
@@ -203,7 +217,10 @@ Trong bước này, bạn sẽ tạo 2 IAM Policy cần thiết cho hệ thống
             {
                 "Sid": "AmplifyHostingAccess",
                 "Effect": "Allow",
-                "Action": ["amplifybackend:*", "amplifyuibuilder:*"],
+                "Action": [
+                    "amplifybackend:*",
+                    "amplifyuibuilder:*"
+                ],
                 "Resource": "*"
             }
         ]

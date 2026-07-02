@@ -18,7 +18,7 @@ Trong bước này, bạn sẽ tạo một **DynamoDB Table** để lưu trữ t
 ![Open DynamoDB](/images/2.environmentsetup/2.5-createdynamodb/001-opendynamodb.png)
 
 {{% notice info %}}
-💡 **Lưu ý:** Trước khi nhấn **Create table**, hãy đảm bảo bạn đã chọn đúng **region là US East (N. Virginia) (us-east-1)** ở góc trên bên phải màn hình AWS Console.  
+💡 **Lưu ý:** Trước khi nhấn **Create table**, hãy đảm bảo bạn đã chọn đúng **region là ap-southeast-1(Singapore)** ở góc trên bên phải màn hình AWS Console.  
 {{% /notice %}}
 
 2. Nhấn **Create table** để bắt đầu tạo bảng mới.

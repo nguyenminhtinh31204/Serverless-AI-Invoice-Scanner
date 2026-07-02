@@ -62,7 +62,7 @@ Trong phần này, bạn sẽ tạo **REST API Gateway** để tiếp nhận hó
 
 2. Nhấn **Create method**.
 
-![Create method](/images/4.deployingapigatewayandfrontend/4.2-createpostapigateway/007-createmethodd.png)
+![Create method](/images/4.deployingapigatewayandfrontend/4.2-createpostapigateway/007-createmethod.png)
 
 3. Cấu hình trong phần **Create method**:
 

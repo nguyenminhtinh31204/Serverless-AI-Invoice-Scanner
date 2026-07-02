@@ -71,7 +71,7 @@ Phần này hướng dẫn bạn tạo REST API tên **GetInvoiceAPI** với cá
     -   **Lambda proxy integration**: Bật.
     -   **Lambda function**: FetchInvoiceDetailsFunction.
 
-![Configuration](/images/4.deployingapigatewayandfrontend/4.1-creategetapigateway/009-configuration.png)
+![Configuration](/images/4.deployingapigatewayandfrontend/4.1-creategetapigateway/09-configuration.png)
 
 ![Configuration](/images/4.deployingapigatewayandfrontend/4.1-creategetapigateway/010-configuration.png)
 
@@ -131,12 +131,12 @@ Phần này hướng dẫn bạn tạo REST API tên **GetInvoiceAPI** với cá
 
 ![Choose resource & click create method](/images/4.deployingapigatewayandfrontend/4.1-creategetapigateway/020-resource-and-createmethod.png)
 
-    -   Thực hiện cấu hình tương tự như trên:
+-   Thực hiện cấu hình tương tự như trên:
 
-        -   **Method type**: PATCH
-        -   **Integration type**: Lambda Function
-        -   **Use Lambda Proxy integration**: Bật
-        -   **Lambda Function**: FetchInvoiceDetailsFunction
+    -   **Method type**: PATCH
+    -   **Integration type**: Lambda Function
+    -   **Use Lambda Proxy integration**: Bật
+    -   **Lambda Function**: FetchInvoiceDetailsFunction
 
 ![Configuration](/images/4.deployingapigatewayandfrontend/4.1-creategetapigateway/021-configuration.png)
 

@@ -77,23 +77,23 @@ Before testing the Lambda function, prepare a sample invoice file to upload. Ple
 
 ```json
 {
-    "Records": [
-        {
-            "eventVersion": "2.1",
-            "eventSource": "aws:s3",
-            "awsRegion": "us-east-1",
-            "eventTime": "2025-07-31T12:00:00.000Z",
-            "eventName": "ObjectCreated:Put",
-            "s3": {
-                "bucket": {
-                    "name": "invoice-upload-s3-bucket"
-                },
-                "object": {
-                    "key": "uploads/demo_invoice.png"
-                }
-            }
+  "Records": [
+    {
+      "eventVersion": "2.1",
+      "eventSource": "aws:s3",
+      "awsRegion": "ap-southeast-1",
+      "eventTime": "2025-07-31T12:00:00.000Z",
+      "eventName": "ObjectCreated:Put",
+      "s3": {
+        "bucket": {
+          "name": "invoice-upload-s3-bucket-113"
+        },
+        "object": {
+          "key": "uploads/demo_invoice.png"
         }
-    ]
+      }
+    }
+  ]
 }
 ```
 
@@ -156,5 +156,5 @@ Before testing the Lambda function, prepare a sample invoice file to upload. Ple
 ![Explore table items](/images/3.lambdafunctions/3.3-testupload/022-exploretableitems.png)
 
 {{% notice warning %}}
-⚠️ **Warning**: Ensure all resources (Lambda, S3, DynamoDB, Textract, and Bedrock) are in the same region: **N. Virginia (us-east-1)** to ensure proper system synchronization.
+⚠️ **Warning**: Ensure all resources (Lambda, S3, DynamoDB, Textract, and Bedrock) are in the same region: **Singapore (ap-southeast-1)** to ensure proper system synchronization.
 {{% /notice %}}

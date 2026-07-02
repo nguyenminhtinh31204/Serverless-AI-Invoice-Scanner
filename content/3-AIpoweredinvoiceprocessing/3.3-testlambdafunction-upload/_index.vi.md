@@ -77,24 +77,25 @@ Trước khi thực hiện kiểm thử Lambda Function, bạn cần chuẩn b�
 
 ```json
 {
-    "Records": [
-        {
-            "eventVersion": "2.1",
-            "eventSource": "aws:s3",
-            "awsRegion": "us-east-1",
-            "eventTime": "2025-07-31T12:00:00.000Z",
-            "eventName": "ObjectCreated:Put",
-            "s3": {
-                "bucket": {
-                    "name": "invoice-upload-s3-bucket"
-                },
-                "object": {
-                    "key": "uploads/demo_invoice.png"
-                }
-            }
+  "Records": [
+    {
+      "eventVersion": "2.1",
+      "eventSource": "aws:s3",
+      "awsRegion": "ap-southeast-1",
+      "eventTime": "2025-07-31T12:00:00.000Z",
+      "eventName": "ObjectCreated:Put",
+      "s3": {
+        "bucket": {
+          "name": "invoice-upload-s3-bucket-113"
+        },
+        "object": {
+          "key": "uploads/demo_invoice.png"
         }
-    ]
+      }
+    }
+  ]
 }
+
 ```
 
 ![Paste JSON](/images/3.lambdafunctions/3.3-testupload/011-json.png)
@@ -156,5 +157,5 @@ Trước khi thực hiện kiểm thử Lambda Function, bạn cần chuẩn b�
 ![Explore table items](/images/3.lambdafunctions/3.3-testupload/022-exploretableitems.png)
 
 {{% notice warning %}}
-⚠️ **Lưu ý**: Đảm bảo tất cả tài nguyên (Lambda, S3, DynamoDB, Textract và Bedrock) đều được tạo trong cùng một Region: **N. Virginia (us-east-1)** để đảm bảo hệ thống hoạt động đồng bộ.
+⚠️ **Lưu ý**: Đảm bảo tất cả tài nguyên (Lambda, S3, DynamoDB, Textract và Bedrock) đều được tạo trong cùng một Region: **Singapore (ap-southeast-1)** để đảm bảo hệ thống hoạt động đồng bộ.
 {{% /notice %}}

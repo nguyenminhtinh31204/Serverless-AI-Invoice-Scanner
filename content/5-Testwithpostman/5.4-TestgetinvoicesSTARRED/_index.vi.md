@@ -9,15 +9,15 @@ pre: " <b> 5.4 </b> "
 
 1. Trong Collection **InvoiceGetAPI-Tests**, nhấn dấu **"+"** để tạo request.
 
-![Get All Invoices Starred](/images/5/5.4/1.png)
+![Get All Invoices Starred](/images/5/5.4/001.png)
 
 2. Đặt tên: `Get All Invoices Starred`.
 
-![Get All Invoices Starred](/images/5/5.4/2.png)
+![Get All Invoices Starred](/images/5/5.4/002.png)
 
 3. Chọn method **GET**.
 
-![Get All Invoices Starred](/images/5/5.4/3.png)
+![Get All Invoices Starred](/images/5/5.4/003.png)
 
 5. Truy cập API Gateway, chọn API: `GetInvoiceAPI`.
 
@@ -25,22 +25,22 @@ pre: " <b> 5.4 </b> "
 
 7. Bấm dấu **“+”** để mở ra đường dẫn đến `/invoice/starred` như dưới đây:
 
-![Get All Invoices Starred](/images/5/5.4/4.png)
+![Get All Invoices Starred](/images/5/5.4/004.png)
 
 8. Chọn phương thức **GET** và sao chép **Invoke URL**.
 
-![Get All Invoices Starred](/images/5/5.4/5.png)
+![Get All Invoices Starred](/images/5/5.4/005.png)
 
 9. Dán **Invoke URL** vừa sao chép vào trong Postman như sau:
 
-![Get All Invoices Starred](/images/5/5.4/6.png)
+![Get All Invoices Starred](/images/5/5.4/006.png)
 
 10. Nhấn nút **Send** để xem kết quả.
 
-![Get All Invoices Starred](/images/5/5.4/7.png)
+![Get All Invoices Starred](/images/5/5.4/007.png)
 
 11. Kết quả trả về như sau:
 
-![Get All Invoices Starred](/images/5/5.4/8.png)
+![Get All Invoices Starred](/images/5/5.4/008.png)
 
 > Khi trả về kết quả `[]` tức là hiện tại chưa có hóa đơn nào đánh dấu

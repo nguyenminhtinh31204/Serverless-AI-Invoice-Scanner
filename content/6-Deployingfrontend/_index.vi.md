@@ -1,154 +1,519 @@
 ---
+
 title: "Triển khai Frontend"
 weight: 6
 chapter: false
 pre: " <b> 6 </b> "
----
+-------------------
 
 ### Yêu cầu
 
--   Đảm bảo bạn đã tải **Visual Studio Code**. Nếu bạn chưa tải thì hãy tải tại liên kết sau: [https://code.visualstudio.com/download](https://code.visualstudio.com/download).
+Trước khi triển khai frontend, bạn cần chuẩn bị:
+
+* Visual Studio Code.
+* Node.js và npm.
+* Git và tài khoản GitHub.
+* Tài khoản AWS có quyền sử dụng Amazon Cognito và AWS Amplify Hosting.
+* Các API Gateway endpoint đã tạo ở các bước trước.
+* Source code React frontend.
+
+{{% notice info %}}
+Trong dự án này, **AWS Amplify** được sử dụng với vai trò **Amplify Hosting** để triển khai React frontend. Amazon Cognito được cấu hình thủ công trên AWS Console thay vì dùng `amplify init`, `amplify add auth` và `amplify push`.
+{{% /notice %}}
 
 ---
 
-#### Bước 1: Tải xuống source code
+#### Bước 1: Tải và mở source code frontend
 
--   Nhấn vào [Tải xuống source code](https://drive.google.com/uc?export=download&id=1pbOd59G4p2Z0K4T2nTDBZAqTRO1Ghksi).
--   Giải nén file zip vừa tải xuống.
+* Tải source code frontend.(https://github.com/nguyenminhtinh31204/frontend-invoice-scanner.git)
+* Giải nén file zip vừa tải.
+* Mở **Visual Studio Code**.
+* Mở thư mục source code đã giải nén.
 
-#### Bước 2: Cập nhật API Endpoint
+Cấu trúc dự án sẽ có dạng tương tự:
 
--   Mở **Visual Studio Code**.
--   Mở tệp `.env` và thay giá trị API endpoint bằng API ID tương ứng từ API Gateway:
-    -   **REACT_APP_API_UPLOAD_URL** : Dùng **API ID** của `PostInvoiceAPI` (AWS API Gateway).
-    -   **REACT_APP_API_INVOICE_URL** : Dùng **API ID** của `GetInvoiceAPI` (AWS API Gateway).
-    -   **REACT_APP_API_UPDATE_TAGS_URL** : Dùng **API ID** của `GetInvoiceAPI` (AWS API Gateway).
-    -   **REACT_APP_API_UPDATE_STARRED_URL** : Dùng **API ID** của `GetInvoiceAPI` (AWS API Gateway).
+```txt
+public/
+src/
+.env.example
+package.json
+README.md
+```
 
-![Source code React with AWS Amplify](/images/6/6.1/Screenshot_1.png)
+Mở Terminal trong Visual Studio Code bằng phím:
 
-#### Bước 3: Cấu hình Amplify
+```txt
+Ctrl + ~
+```
 
--   Mở **Terminal** bằng cách sử dụng phím `Ctrl + ~`.
-
--   Trỏ đến thư mục gốc của dự án bằng cách sử dụng:
+Di chuyển vào thư mục gốc của dự án:
 
 ```bash
 cd <folder_name>
 ```
 
-![Source code React with AWS Amplify](/images/6/6.1/Screenshot_2.png)
-
--   Chạy câu lệnh sau để **cài đặt dependencies**:
+Cài đặt các thư viện cần thiết:
 
 ```bash
 npm install
 ```
 
-![Source code React with AWS Amplify](/images/6/6.1/Screenshot_3.png)
+---
 
--   Chạy câu lệnh sau để cài đặt **AWS Amplify CLI**:
+#### Bước 2: Cập nhật biến môi trường
 
-```bash
-npm install -g @aws-amplify/cli
+Mở file `.env` trong thư mục gốc của dự án.
+
+Nếu chưa có file `.env`, hãy tạo mới file:
+
+```txt
+.env
 ```
 
-![Source code React with AWS Amplify](/images/6/6.1/Screenshot_4.png)
+Sau đó cấu hình nội dung như sau:
 
--   Sau khi cài đặt xong, kiểm tra **AWS Amplify CLI** đã cài đặt thành công chưa bằng cách dùng câu lệnh sau:
+```env
+REACT_APP_SEND_AUTH_TOKEN=false
 
-```bash
-amplify -v
+REACT_APP_AWS_REGION=ap-southeast-1
+
+REACT_APP_USER_POOL_ID=ap-southeast-1_xxxxxxxxx
+REACT_APP_USER_POOL_CLIENT_ID=xxxxxxxxxxxxxxxxxxxxxxxxxx
+
+REACT_APP_API_UPLOAD_URL=https://<PostInvoiceAPI_ID>.execute-api.ap-southeast-1.amazonaws.com/dev/uploads
+
+REACT_APP_API_INVOICE_URL=https://<GetInvoiceAPI_ID>.execute-api.ap-southeast-1.amazonaws.com/dev/invoice
+
+REACT_APP_API_UPDATE_TAGS_URL=https://<GetInvoiceAPI_ID>.execute-api.ap-southeast-1.amazonaws.com/dev/invoice/tags
+
+REACT_APP_API_UPDATE_STARRED_URL=https://<GetInvoiceAPI_ID>.execute-api.ap-southeast-1.amazonaws.com/dev/invoice/starred
 ```
 
-![Source code React with AWS Amplify](/images/6/6.1/Screenshot_5.png)
+Trong đó:
 
--   Sử dụng câu lệnh sau để cấu hình Amplify:
-
-```bash
-amplify configure
-```
+* **REACT_APP_USER_POOL_ID**: User Pool ID lấy từ Amazon Cognito.
+* **REACT_APP_USER_POOL_CLIENT_ID**: App Client ID lấy từ Amazon Cognito.
+* **REACT_APP_API_UPLOAD_URL**: API Gateway endpoint dùng để upload hóa đơn.
+* **REACT_APP_API_INVOICE_URL**: API Gateway endpoint dùng để lấy danh sách và chi tiết hóa đơn.
+* **REACT_APP_API_UPDATE_TAGS_URL**: API Gateway endpoint dùng để cập nhật tags hóa đơn.
+* **REACT_APP_API_UPDATE_STARRED_URL**: API Gateway endpoint dùng để đánh dấu hóa đơn quan trọng.
 
 {{% notice warning %}}
-⚠️ **Lưu ý**: Sau khi dùng câu lệnh `amplify configure` để cấu hình, lập tức sẽ xuất hiện tab trang mới. bạn có thể đóng tab và quay trở lại **Visual Studio Code** tiếp tục cấu hình nhé!
+Không lưu OpenAI API Key trong file `.env` của React frontend. OpenAI API Key phải được lưu ở phía backend, ví dụ trong Lambda environment variables hoặc AWS Secrets Manager.
 {{% /notice %}}
 
--   Trong **cấu hình Amplify**, bạn thực hiện như sau:
+---
 
-    -   **Region**: chọn `us-east-1`.
-    -   **Access Key ID**: điền **access key** của IAM User mà bạn đã tạo.
-    -   **Secret Access Key**: điền **secret key** của IAM User mà bạn đã tạo.
-    -   **Profile Name**: chọn `default`.
+#### Bước 3: Cấu hình Amazon Cognito
 
-![Source code React with AWS Amplify](/images/6/6.1/Screenshot_6.png)
+Vì dự án không còn sử dụng Amplify Gen 1 CLI để tạo Auth, Amazon Cognito sẽ được tạo thủ công trên AWS Console.
 
-![Source code React with AWS Amplify](/images/6/6.1/Screenshot_7.png)
+Truy cập:
 
--   Sử dụng câu lệnh sau để **khởi tạo Amplify**:
-
-```bash
-amplify init
+```txt
+AWS Console → Amazon Cognito → User pools → Create user pool
 ```
 
--   Bạn hãy cấu hình như sau để khởi tạo Amplify:
+Cấu hình User Pool như sau:
 
-    -   **? Do you want to use an existing environment**: chọn `No`.
-    -   **? Enter a name for the environment**: `dev`.
-    -   **? Select the authentication method you want to use**: `AWS access keys`.
-    -   **? accessKeyId**: điền **access key** của IAM User mà bạn đã tạo.
-    -   **? secretAccessKey**: điền **secret key** của IAM User mà bạn đã tạo.
-    -   **? region**: `us-east-1`.
+* **Application type**: `Single-page application (SPA)`.
+* **Application name**: `invoice-scanner-frontend`.
+* **Sign-in identifiers**: Chọn `Email`.
+* **Self-registration**: Bật `Enable self-registration`.
+* **Required attributes**: Chọn `email`.
+* **User pool name**: `invoice-scanner-user-pool`.
+* **App client name**: `invoice-scanner-frontend-client`.
+* **Client secret**: Không tạo client secret.
 
-![Source code React with AWS Amplify](/images/6/6.1/Screenshot_8.png)
+Với môi trường chạy local, thêm URL sau:
 
-![Source code React with AWS Amplify](/images/6/6.1/Screenshot_9.png)
-
-#### Bước 4: Cấu hình Cognito
-
--   Sử dụng câu lệnh sau để thêm **Auth** của **AWS Cognito**:
-
-```bash
-amplify add auth
+```txt
+http://localhost:3000/
 ```
 
--   Cấu hình thêm Auth như sau:
+vào các mục:
 
-    -   **Do you want to use the default authentication and security configuration?**: `Default configuration`.
-    -   **How do you want users to be able to sign in?**: `Email`.
-    -   **Do you want to configure advanced settings?**: `No, I am done`.
+* Allowed callback URLs.
+* Allowed sign-out URLs.
 
-![Source code React with AWS Amplify](/images/6/6.1/Screenshot_10.png)
+Sau khi tạo User Pool xong, sao chép hai giá trị sau:
 
--   Sau đó triển khai các thay đổi:
-
-```bash
-amplify push
+```txt
+User Pool ID
+App Client ID
 ```
 
-![Source code React with AWS Amplify](/images/6/6.1/Screenshot_11.png)
+Sau đó cập nhật vào file `.env`:
 
-![Source code React with AWS Amplify](/images/6/6.1/Screenshot_12.png)
+```env
+REACT_APP_USER_POOL_ID=ap-southeast-1_xxxxxxxxx
+REACT_APP_USER_POOL_CLIENT_ID=xxxxxxxxxxxxxxxxxxxxxxxxxx
+```
 
-#### Bước 5: Chạy ứng dụng
+---
 
--   Khởi chạy ứng dụng trong:
+#### Bước 4: Cấu hình Cognito trong React
+
+Tạo file:
+
+```txt
+src/awsConfig.js
+```
+
+Thêm nội dung sau:
+
+```javascript
+const awsConfig = {
+  Auth: {
+    Cognito: {
+      userPoolId: process.env.REACT_APP_USER_POOL_ID,
+      userPoolClientId: process.env.REACT_APP_USER_POOL_CLIENT_ID,
+      loginWith: {
+        email: true
+      }
+    }
+  }
+};
+
+export default awsConfig;
+```
+
+Cài đặt thư viện cần thiết cho Cognito và Amplify UI:
+
+```bash
+npm install aws-amplify @aws-amplify/ui-react
+```
+
+Trong file `src/App.js`, ứng dụng sử dụng `Authenticator` từ Amplify UI để hiển thị màn hình đăng nhập/đăng ký trước khi người dùng truy cập vào dashboard quản lý hóa đơn.
+
+---
+
+#### Bước 5: Chạy ứng dụng ở môi trường local
+
+Chạy ứng dụng React:
 
 ```bash
 npm start
 ```
 
--   Bạn hãy thử thao tác các chức năng như:
-    -   Tải tệp hóa đơn.
-    -   Xem hóa đơn chi tiết.
-    -   Xem tất cả hóa đơn.
-    -   Tra cứu hóa đơn theo ID hoặc tên khách hàng.
-    -   Xuất tệp Excel.
-    -   Lọc tìm kiếm theo thời gian.
-    -   Sắp xếp theo tổng số tiền.
-    -   Sắp xếp theo ngày hóa đơn.
-    -   Kéo - thả khi tải tệp hóa đơn.
-    -   Xem tags của hóa đơn.
-    -   Thêm tags hóa đơn.
-    -   Chỉnh sửa tags hóa đơn.
-    -   Lọc tags hóa đơn.
-    -   Đánh dấu hóa đơn quan trọng.
+Ứng dụng sẽ chạy tại:
+
+```txt
+http://localhost:3000
+```
+
+Khi mở ứng dụng, màn hình đăng nhập Cognito sẽ xuất hiện trước.
+
+Người dùng có thể đăng ký tài khoản mới hoặc đăng nhập bằng tài khoản đã có.
+
+Sau khi đăng nhập thành công, giao diện quản lý hóa đơn sẽ được hiển thị.
+
+Kiểm tra các chức năng chính:
+
+* Tải tệp hóa đơn.
+* Kéo - thả tệp hóa đơn.
+* Xem tất cả hóa đơn.
+* Xem chi tiết hóa đơn.
+* Tra cứu hóa đơn theo Invoice ID.
+* Tra cứu hóa đơn theo tên khách hàng.
+* Xuất dữ liệu hóa đơn ra Excel.
+* Lọc hóa đơn theo ngày.
+* Sắp xếp hóa đơn theo tổng tiền.
+* Sắp xếp hóa đơn theo ngày hóa đơn.
+* Xem tags của hóa đơn.
+* Thêm tags hóa đơn.
+* Chỉnh sửa tags hóa đơn.
+* Lọc hóa đơn theo tags.
+* Đánh dấu hóa đơn quan trọng.
+
+{{% notice info %}}
+Lệnh `npm start` chỉ dùng để chạy thử ở môi trường local. Khi triển khai thật, frontend sẽ được build và host bằng AWS Amplify Hosting.
+{{% /notice %}}
+
+---
+
+#### Bước 6: Đưa source code lên GitHub
+
+Để triển khai frontend mà không cần chạy server local liên tục, cần đưa source code React lên GitHub.
+
+Khởi tạo Git trong thư mục dự án:
+
+```bash
+git init
+```
+
+Thêm toàn bộ file vào Git:
+
+```bash
+git add .
+```
+
+Commit source code:
+
+```bash
+git commit -m "Deploy invoice scanner frontend"
+```
+
+Đổi nhánh chính thành `main`:
+
+```bash
+git branch -M main
+```
+
+Thêm remote repository GitHub:
+
+```bash
+git remote add origin <your_github_repository_url>
+```
+
+Đẩy source code lên GitHub:
+
+```bash
+git push -u origin main
+```
+
+---
+
+#### Bước 7: Triển khai frontend bằng AWS Amplify Hosting
+
+Truy cập AWS Console:
+
+```txt
+AWS Console → AWS Amplify → Create new app → Host web app
+```
+
+Chọn:
+
+```txt
+GitHub
+```
+
+Sau đó chọn:
+
+* Repository: repository frontend của bạn.
+* Branch: `main`.
+
+Amplify sẽ tự động nhận diện dự án React. Nếu cần cấu hình build thủ công, sử dụng cấu hình sau:
+
+```yaml
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - npm install
+    build:
+      commands:
+        - npm run build
+  artifacts:
+    baseDirectory: build
+    files:
+      - "**/*"
+  cache:
+    paths:
+      - node_modules/**/*
+```
+
+Sau đó chọn:
+
+```txt
+Save and deploy
+```
+
+Sau khi triển khai xong, AWS Amplify sẽ cung cấp một đường dẫn public tương tự:
+
+```txt
+https://main.xxxxx.amplifyapp.com
+```
+
+Đây là URL frontend sau khi deploy.
+
+---
+
+#### Bước 8: Thêm biến môi trường trong Amplify Hosting
+
+Trong AWS Amplify Console, mở ứng dụng vừa deploy.
+
+Truy cập:
+
+```txt
+App settings → Environment variables
+```
+
+Thêm các biến môi trường giống như trong file `.env` local:
+
+```env
+REACT_APP_SEND_AUTH_TOKEN=false
+
+REACT_APP_AWS_REGION=ap-southeast-1
+
+REACT_APP_USER_POOL_ID=ap-southeast-1_xxxxxxxxx
+REACT_APP_USER_POOL_CLIENT_ID=xxxxxxxxxxxxxxxxxxxxxxxxxx
+
+REACT_APP_API_UPLOAD_URL=https://<PostInvoiceAPI_ID>.execute-api.ap-southeast-1.amazonaws.com/dev/uploads
+
+REACT_APP_API_INVOICE_URL=https://<GetInvoiceAPI_ID>.execute-api.ap-southeast-1.amazonaws.com/dev/invoice
+
+REACT_APP_API_UPDATE_TAGS_URL=https://<GetInvoiceAPI_ID>.execute-api.ap-southeast-1.amazonaws.com/dev/invoice/tags
+
+REACT_APP_API_UPDATE_STARRED_URL=https://<GetInvoiceAPI_ID>.execute-api.ap-southeast-1.amazonaws.com/dev/invoice/starred
+```
+
+Sau khi thêm hoặc chỉnh sửa biến môi trường, cần redeploy lại ứng dụng.
+
+{{% notice warning %}}
+Các biến môi trường của React được đưa vào ứng dụng tại thời điểm build. Vì vậy, sau khi thay đổi biến môi trường trong Amplify Hosting, bạn phải redeploy ứng dụng để giá trị mới có hiệu lực.
+{{% /notice %}}
+
+---
+
+#### Bước 9: Cập nhật Callback URL và Sign-out URL trong Cognito
+
+Sau khi AWS Amplify Hosting deploy xong, sao chép URL frontend.
+
+Ví dụ:
+
+```txt
+https://main.xxxxx.amplifyapp.com/
+```
+
+Quay lại Amazon Cognito:
+
+```txt
+Amazon Cognito → User pools → invoice-scanner-user-pool → App client
+```
+
+Thêm URL Amplify Hosting vào:
+
+```txt
+Allowed callback URLs
+```
+
+và:
+
+```txt
+Allowed sign-out URLs
+```
+
+Ví dụ:
+
+```txt
+http://localhost:3000/
+https://main.xxxxx.amplifyapp.com/
+```
+
+Việc này giúp Cognito hoạt động được cả khi chạy local và khi chạy trên website đã deploy bằng Amplify Hosting.
+
+---
+
+#### Bước 10: Kiểm tra frontend sau khi deploy
+
+Mở URL frontend đã deploy:
+
+```txt
+https://main.xxxxx.amplifyapp.com
+```
+
+Đăng nhập bằng Cognito.
+
+Sau đó kiểm tra lại toàn bộ chức năng:
+
+* Tải tệp hóa đơn.
+* Kéo - thả tệp hóa đơn.
+* Xem chi tiết hóa đơn.
+* Xem tất cả hóa đơn.
+* Tra cứu hóa đơn theo ID.
+* Tra cứu hóa đơn theo tên khách hàng.
+* Xuất dữ liệu hóa đơn ra Excel.
+* Lọc hóa đơn theo ngày.
+* Sắp xếp hóa đơn theo tổng tiền.
+* Sắp xếp hóa đơn theo ngày hóa đơn.
+* Xem tags của hóa đơn.
+* Thêm tags hóa đơn.
+* Chỉnh sửa tags hóa đơn.
+* Lọc hóa đơn theo tags.
+* Đánh dấu hóa đơn quan trọng.
+
+---
+
+### Xử lý lỗi thường gặp
+
+#### Upload hóa đơn thất bại
+
+Nếu upload hóa đơn bị lỗi, kiểm tra các phần sau:
+
+* `REACT_APP_API_UPLOAD_URL` có đúng API Gateway endpoint hay không.
+* API Gateway có route:
+
+```txt
+POST /uploads
+```
+
+* Lambda upload có trả CORS headers hay không.
+* API Gateway có hỗ trợ method `OPTIONS` cho CORS preflight hay không.
+* Request body phải có dạng:
+
+```json
+{
+  "filename": "invoice.png",
+  "file": "base64_string_here",
+  "contentType": "image/png"
+}
+```
+
+#### Lỗi Missing Authentication Token
+
+Nếu API Gateway trả về:
+
+```json
+{
+  "message": "Missing Authentication Token"
+}
+```
+
+Cần kiểm tra:
+
+* HTTP method có đúng không.
+* Đường dẫn API có đúng không.
+* Stage của API Gateway có đúng không.
+* API đã được deploy lại sau khi chỉnh route hay chưa.
+
+#### Cognito đăng nhập được ở local nhưng lỗi khi deploy
+
+Kiểm tra:
+
+* Đã thêm URL Amplify Hosting vào Cognito callback URLs chưa.
+* Đã thêm URL Amplify Hosting vào Cognito sign-out URLs chưa.
+* Đã thêm đầy đủ environment variables trong Amplify Hosting chưa.
+* Đã redeploy sau khi cập nhật environment variables chưa.
+
+#### API chạy được trong Postman nhưng lỗi trên trình duyệt
+
+Nguyên nhân thường gặp là do CORS.
+
+Đảm bảo Lambda hoặc API Gateway trả về headers:
+
+```json
+{
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Headers": "Content-Type,Authorization",
+  "Access-Control-Allow-Methods": "OPTIONS,GET,POST,PATCH"
+}
+```
+
+---
+
+### Kết quả
+
+Sau khi hoàn thành bước này, frontend đã được triển khai thành công trên AWS Amplify Hosting.
+
+Người dùng có thể truy cập hệ thống thông qua URL public mà không cần chạy `npm start` trên máy cá nhân.
+
+Frontend kết nối với các dịch vụ:
+
+* Amazon Cognito để xác thực người dùng.
+* Amazon API Gateway để gọi các REST API.
+* AWS Lambda để xử lý logic backend.
+* Amazon S3 để lưu trữ file hóa đơn.
+* Amazon Textract và OpenAI API để trích xuất văn bản và chuẩn hóa dữ liệu hóa đơn.
+* Amazon DynamoDB để lưu trữ và truy vấn dữ liệu hóa đơn.

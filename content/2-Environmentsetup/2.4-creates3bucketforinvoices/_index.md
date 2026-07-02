@@ -7,7 +7,7 @@ pre: " <b> 2.4 </b> "
 
 #### Overview
 
-In this step, you will create an **S3 bucket** to store invoice files uploaded by users. This bucket will be created in the **us-east-1** region, and you will also configure an **event notification** to trigger a **Lambda function** whenever a new file is uploaded into a specific folder.
+In this step, you will create an **S3 bucket** to store invoice files uploaded by users. This bucket will be created in the **ap-southeast-1(Singapore)** region, and you will also configure an **event notification** to trigger a **Lambda function** whenever a new file is uploaded into a specific folder.
 
 ---
 
@@ -18,7 +18,7 @@ In this step, you will create an **S3 bucket** to store invoice files uploaded b
 ![S3 Console](/images/2.environmentsetup/2.4-creates3bucket/001-opens3console.png)
 
 {{% notice info %}}
-💡 **Note:** Before creating the bucket, make sure you have selected the correct region **us-east-1** in the upper right corner of the AWS Console screen.  
+💡 **Note:** Before creating the bucket, make sure you have selected the correct region **ap-southeast-1** in the upper right corner of the AWS Console screen.  
 Creating the S3 bucket in the correct region is crucial for services like Lambda or Textract to work seamlessly.
 {{% /notice %}}
 
@@ -35,7 +35,7 @@ Creating the S3 bucket in the correct region is crucial for services like Lambda
 ![Configure Bucket](/images/2.environmentsetup/2.4-creates3bucket/003-bucketname-region.png)
 
 {{% notice info %}}
-💡 **Note:** Bucket names must be globally unique. You may add a suffix if the name is already taken, e.g., **invoice-upload-s3-bucket-123456**.
+💡 **Note:** Bucket names must be globally unique. You may add a suffix if the name is already taken, e.g., **invoice-upload-s3-bucket-113**.
 {{% /notice %}}
 
 2. In the **Object Ownership** section, select **ACLs disabled**.
@@ -98,7 +98,9 @@ Creating the S3 bucket in the correct region is crucial for services like Lambda
     - **Event types**: select `PUT` (All object create events)
     - **Destination**: select **Lambda function**
     - **Lambda function**: select `UploadInvoiceFileFunction`
-
+{{% notice info %}}
+    You will not see the Lambda function at this stage; therefore, proceed to create Lambda function #1 first, then return to complete this step.
+{{% /notice %}}
 ![Event Settings](/images/2.environmentsetup/2.4-creates3bucket/014-eventsettings.png)
 
 ![Event Settings](/images/2.environmentsetup/2.4-creates3bucket/015-eventsettings.png)
@@ -110,5 +112,5 @@ Creating the S3 bucket in the correct region is crucial for services like Lambda
 ![Event Settings](/images/2.environmentsetup/2.4-creates3bucket/017-savechanges.png)
 
 {{% notice info %}}
-If you don’t see the Lambda function listed, make sure it was created in the correct region **(us-east-1)** and that the Lambda's IAM role has the **s3:PutBucketNotification** permission.
+If you don’t see the Lambda function listed, make sure it was created in the correct region **(ap-southeast-1)** and that the Lambda's IAM role has the **s3:PutBucketNotification** permission.
 {{% /notice %}}

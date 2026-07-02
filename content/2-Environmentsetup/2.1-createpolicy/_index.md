@@ -91,7 +91,11 @@ In this step, you will create 2 essential IAM Policies for the system:
         {
             "Sid": "CognitoPowerUser",
             "Effect": "Allow",
-            "Action": ["cognito-idp:*", "cognito-sync:*", "cognito-identity:*"],
+            "Action": [
+                "cognito-idp:*",
+                "cognito-sync:*",
+                "cognito-identity:*"
+            ],
             "Resource": "*"
         },
         {
@@ -109,7 +113,6 @@ In this step, you will create 2 essential IAM Policies for the system:
                 "iam:GetPolicyVersion",
                 "iam:GetRole",
                 "iam:ListRoles",
-                "iam:PassRole",
                 "iam:ListPolicies",
                 "iam:AttachRolePolicy",
                 "iam:ListRolePolicies",
@@ -125,6 +128,17 @@ In this step, you will create 2 essential IAM Policies for the system:
                 "iam:UpdateRole"
             ],
             "Resource": "*"
+        },
+        {
+            "Sid": "StrictPassRoleForLambda",
+            "Effect": "Allow",
+            "Action": "iam:PassRole",
+            "Resource": "*",
+            "Condition": {
+                "StringEquals": {
+                    "iam:PassedToService": "lambda.amazonaws.com"
+                }
+            }
         },
         {
             "Sid": "AllowValidatePolicy",
@@ -203,7 +217,10 @@ In this step, you will create 2 essential IAM Policies for the system:
             {
                 "Sid": "AmplifyHostingAccess",
                 "Effect": "Allow",
-                "Action": ["amplifybackend:*", "amplifyuibuilder:*"],
+                "Action": [
+                    "amplifybackend:*",
+                    "amplifyuibuilder:*"
+                ],
                 "Resource": "*"
             }
         ]

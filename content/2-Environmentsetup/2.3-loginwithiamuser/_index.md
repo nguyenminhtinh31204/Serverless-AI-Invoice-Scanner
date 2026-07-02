@@ -59,26 +59,26 @@ This information is usually provided to you via email or as an attachment from t
 
 -   Then click the **Sign in** button to access the system.
 
-![IAM User](/images/2.environmentsetup/2.3-loginwithiamuser/005-loginwithiamuser.png)
+![IAM User](/images/2.environmentsetup/2.3-loginwithiamuser/004-loginwithiamuser.png)
 
 ---
 
-#### Step 5: Set Region to N. Virginia
+#### Step 5: Set Region to Singapore
 
 -   After successfully logging into the AWS Management Console:
 
     -   Look at the **top-right corner** of the screen.
     -   Click on the current Region name.
-    -   Select **N. Virginia** (us-east-1).
+    -   Select **Singapore** (ap-southeast-1).
 
-![IAM User](/images/2.environmentsetup/2.3-loginwithiamuser/004-loginwithiamuser.png)
+![IAM User](/images/2.environmentsetup/2.3-loginwithiamuser/005-loginwithiamuser.png)
 
 {{% notice info %}}
-All system resources will be deployed in the **us-east-1 (N. Virginia)** Region. Make sure you are operating in the correct region.
+All system resources will be deployed in the **ap-southeast-1(Singapore)** Region. Make sure you are operating in the correct region.
 {{% /notice %}}
 
 ---
 
 #### Conclusion
 
-You have successfully logged in as an IAM User. In the next step, you will create an S3 Bucket in the **us-east-1** Region.
+You have successfully logged in as an IAM User. In the next step, you will create an S3 Bucket in the **ap-southeast-1** Region.

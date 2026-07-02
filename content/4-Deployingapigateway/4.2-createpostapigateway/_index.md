@@ -62,7 +62,7 @@ In this section, you will create a **REST API Gateway** to receive invoices uplo
 
 2. Click **Create method**.
 
-![Create method](/images/4.deployingapigatewayandfrontend/4.2-createpostapigateway/007-createmethodd.png)
+![Create method](/images/4.deployingapigatewayandfrontend/4.2-createpostapigateway/007-createmethod.png)
 
 3. Configure in **Create method**:
 

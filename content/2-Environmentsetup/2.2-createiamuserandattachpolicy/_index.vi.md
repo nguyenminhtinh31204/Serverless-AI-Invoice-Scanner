@@ -144,7 +144,7 @@ Việc bỏ chọn tùy chọn này giúp người dùng không bị yêu cầu 
 
 2. Nhấn **Download .csv file** và lưu tệp vào máy tính để sử dụng sau.
 
-![Access Key](/images/2.environmentsetup/2.2-createiamuserandattachpolicy/021-saveaccesskey.png)
+![Access Key](/images/2.environmentsetup/2.2-createiamuserandattachpolicy/021-createaccesskey.png)
 
 3. Nhấn **Done** để hoàn tất.
 

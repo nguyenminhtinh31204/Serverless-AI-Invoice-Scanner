@@ -71,7 +71,7 @@ This section guides you through creating a REST API named **GetInvoiceAPI** with
     - **Lambda proxy integration**: Enabled.
     - **Lambda function**: FetchInvoiceDetailsFunction.
 
-![Configuration](/images/4.deployingapigatewayandfrontend/4.1-creategetapigateway/009-configuration.png)
+![Configuration](/images/4.deployingapigatewayandfrontend/4.1-creategetapigateway/09-configuration.png)
 
 ![Configuration](/images/4.deployingapigatewayandfrontend/4.1-creategetapigateway/010-configuration.png)
 
@@ -131,12 +131,12 @@ This section guides you through creating a REST API named **GetInvoiceAPI** with
 
 ![Choose resource & click create method](/images/4.deployingapigatewayandfrontend/4.1-creategetapigateway/020-resource-and-createmethod.png)
 
-    - Configure similarly:
+Configure similarly:
 
-        - **Method type**: PATCH
-        - **Integration type**: Lambda Function
-        - **Use Lambda Proxy integration**: Enabled
-        - **Lambda Function**: FetchInvoiceDetailsFunction
+- **Method type**: PATCH
+- **Integration type**: Lambda Function
+- **Use Lambda Proxy integration**: Enabled
+- **Lambda Function**: FetchInvoiceDetailsFunction
 
 ![Configuration](/images/4.deployingapigatewayandfrontend/4.1-creategetapigateway/021-configuration.png)
 

@@ -144,7 +144,7 @@ Unchecking this option allows the user to avoid being prompted to change the pas
 
 2. Click **Download .csv file** and save the file on your computer for future use.
 
-![Access Key](/images/2.environmentsetup/2.2-createiamuserandattachpolicy/021-saveaccesskey.png)
+![Access Key](/images/2.environmentsetup/2.2-createiamuserandattachpolicy/021-createaccesskey.png)
 
 3. Click **Done** to finish.
 

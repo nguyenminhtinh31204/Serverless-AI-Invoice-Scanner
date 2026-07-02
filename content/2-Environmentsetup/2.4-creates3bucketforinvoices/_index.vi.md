@@ -7,7 +7,7 @@ pre: " <b> 2.4 </b> "
 
 #### Tổng quan
 
-Trong bước này, bạn sẽ tạo một **S3 bucket** để lưu trữ các tệp hóa đơn mà người dùng tải lên. Bucket này sẽ được tạo trong vùng **us-east-1**, đồng thời bạn sẽ thiết lập một sự kiện (event notification) để kích hoạt **Lambda function** mỗi khi có tệp mới được upload vào thư mục.
+Trong bước này, bạn sẽ tạo một **S3 bucket** để lưu trữ các tệp hóa đơn mà người dùng tải lên. Bucket này sẽ được tạo trong vùng **ap-southeast-1(Singapore)**, đồng thời bạn sẽ thiết lập một sự kiện (event notification) để kích hoạt **Lambda function** mỗi khi có tệp mới được upload vào thư mục.
 
 ---
 
@@ -18,7 +18,7 @@ Trong bước này, bạn sẽ tạo một **S3 bucket** để lưu trữ các t
 ![S3 Console](/images/2.environmentsetup/2.4-creates3bucket/001-opens3console.png)
 
 {{% notice info %}}
-💡 **Lưu ý:** Trước khi tạo, hãy đảm bảo bạn đã chọn đúng region là **us-east-1** ở góc trên bên phải màn hình AWS Console.  
+💡 **Lưu ý:** Trước khi tạo, hãy đảm bảo bạn đã chọn đúng region là **ap-southeast-1** ở góc trên bên phải màn hình AWS Console.  
 Việc tạo S3 bucket ở đúng region là rất quan trọng để các dịch vụ như Lambda hoặc Textract hoạt động đồng bộ.
 {{% /notice %}}
 
@@ -35,7 +35,7 @@ Việc tạo S3 bucket ở đúng region là rất quan trọng để các dịc
 ![Configure Bucket](/images/2.environmentsetup/2.4-creates3bucket/003-bucketname-region.png)
 
 {{% notice info %}}
-💡 **Lưu ý:** Tên bucket phải duy nhất trên toàn cầu. Bạn có thể thêm hậu tố nếu tên bị trùng, ví dụ: **invoice-upload-s3-bucket-123456**.
+💡 **Lưu ý:** Tên bucket phải duy nhất trên toàn cầu. Bạn có thể thêm hậu tố nếu tên bị trùng, ví dụ: **invoice-upload-s3-bucket-113**.
 {{% /notice %}}
 
 2. Trong phần **Object Ownership**, chọn **ACLs disabled**.
@@ -98,6 +98,9 @@ Việc tạo S3 bucket ở đúng region là rất quan trọng để các dịc
     - **Event types**: chọn `PUT` (All object create events)
     - **Destination**: chọn **Lambda function**
     - **Lambda function**: chọn `UploadInvoiceFileFunction`
+    {{% notice info %}}
+        Ở bước này sẽ không thấy được Lambda function , nên làm tiếp bước tạo Lambda function#1 rồi quay lại làm tiếp bước này
+    {{% /notice %}}
 
 ![Event Settings](/images/2.environmentsetup/2.4-creates3bucket/014-eventsettings.png)
 
@@ -107,8 +110,10 @@ Việc tạo S3 bucket ở đúng region là rất quan trọng để các dịc
 
 4. Nhấn **Save changes** để hoàn tất.
 
+
+
 ![Event Settings](/images/2.environmentsetup/2.4-creates3bucket/017-savechanges.png)
 
 {{% notice info %}}
-Nếu chưa thấy Lambda function, hãy đảm bảo bạn đã tạo đúng vùng **(us-east-1)** và IAM role của Lambda có quyền **s3:PutBucketNotification**.
+Nếu chưa thấy Lambda function, hãy đảm bảo bạn đã tạo đúng vùng **(ap-southeast-1)** và IAM role của Lambda có quyền **s3:PutBucketNotification**.
 {{% /notice %}}
