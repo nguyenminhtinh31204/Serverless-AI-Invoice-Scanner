@@ -7,6 +7,9 @@ Production URL:
 ```text
 https://nguyenminhtinh31204.github.io/Serverless-AI-Invoice-Scanner/
 ```
+```front-end connect to aws service
+https://main.d1m4pmxvsvx5zk.amplifyapp.com/
+```
 
 ## Structure
 
