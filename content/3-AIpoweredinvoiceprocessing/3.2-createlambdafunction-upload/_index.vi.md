@@ -7,7 +7,7 @@ pre: " <b> 3.2 </b> "
 
 #### Tổng quan
 
-Trong bước này, bạn sẽ tạo Lambda Function đầu tiên có tên là **UploadInvoiceFileFunction**. Function này sẽ được kích hoạt khi người dùng tải lên một file hóa đơn vào S3 bucket. Sau đó, nó sẽ sử dụng **Amazon Textract** để trích xuất văn bản, **Amazon Bedrock** để phân tích và hiểu nội dung, cuối cùng lưu thông tin vào **DynamoDB**.
+Trong bước này, bạn sẽ tạo Lambda Function đầu tiên có tên là **UploadInvoiceFileFunction**. Function này sẽ được kích hoạt khi người dùng tải lên một file hóa đơn vào S3 bucket. Sau đó, nó sẽ sử dụng **Amazon Textract** để trích xuất văn bản, **OpenAI API** để phân tích và hiểu nội dung, cuối cùng lưu thông tin vào **DynamoDB**.
 
 ---
 
@@ -18,7 +18,7 @@ Trong bước này, bạn sẽ tạo Lambda Function đầu tiên có tên là *
 ![Open Lambda](/images/3.lambdafunctions/3.2-uploadinvoicelambda/001-openlambda.png)
 
 {{% notice warning %}}
-⚠️ **Lưu ý**: Hãy đảm bảo bạn đang ở đúng **Region: N. Virginia (us-east-1)** trước khi tạo Lambda function. Đây là vùng bạn đã tạo S3 bucket, DynamoDB table và đăng ký Amazon Bedrock. Nếu chọn sai vùng, Lambda sẽ không thể truy cập được các dịch vụ khác của hệ thống.
+⚠️ **Lưu ý**: Hãy đảm bảo bạn đang ở đúng **Region: Singapore (ap-southeast)** trước khi tạo Lambda function. Đây là vùng bạn đã tạo S3 bucket, DynamoDB table và đăng ký Amazon Bedrock. Nếu chọn sai vùng, Lambda sẽ không thể truy cập được các dịch vụ khác của hệ thống.
 {{% /notice %}}
 
 2. Nhấn **Create function**.

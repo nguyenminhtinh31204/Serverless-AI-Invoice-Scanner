@@ -49,8 +49,7 @@ AWS Lambda là dịch vụ serverless compute cho phép chạy code backend mà 
 Hệ thống sử dụng một số Lambda functions chính như:
 
 - `UploadInvoiceFileFunction`
-- `ProcessInvoiceFunction`
-- `InvoiceManagementFunction`
+- `FetchInvoiceDetailsFunction`
 
 #### Amazon DynamoDB
 

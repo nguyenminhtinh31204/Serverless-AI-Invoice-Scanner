@@ -7,7 +7,7 @@ pre: " <b> 3.3 </b> "
 
 #### Tổng quan
 
-In this step, you will test the **UploadInvoiceFileFunction** Lambda Function by uploading a sample invoice file to the S3 bucket. The purpose of this test is to verify the entire processing workflow, from file upload to S3, data extraction with Textract, analysis with Bedrock, and storage in DynamoDB.
+In this step, you will test the **UploadInvoiceFileFunction** Lambda Function by uploading a sample invoice file to the S3 bucket. The purpose of this test is to verify the entire processing workflow, from file upload to S3, data extraction with Textract, analysis with OpenAI, and storage in DynamoDB.
 
 ---
 
@@ -15,7 +15,7 @@ In this step, you will test the **UploadInvoiceFileFunction** Lambda Function by
 
 Before testing the Lambda function, prepare a sample invoice file to upload. Please download the following file:
 
--   [Download demo_invoice.png sample file](/images/demo_invoice.png)
+-   -   [demo_invoice.png](https://drive.google.com/file/d/1EcicofEM9axww3cfS1TMa0cX37S0otDx/view?usp=drive_link)
 
 {{% notice info %}}
 🔧 **Note**: If you use a different invoice file, rename it to **demo_invoice.png** before uploading to the **uploads/** folder in S3.  

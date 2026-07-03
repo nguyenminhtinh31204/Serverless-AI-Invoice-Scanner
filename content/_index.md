@@ -43,8 +43,7 @@ AWS Lambda is a serverless compute service that runs backend logic without requi
 The system uses several Lambda functions, such as:
 
 - `UploadInvoiceFileFunction`
-- `ProcessInvoiceFunction`
-- `InvoiceManagementFunction`
+- `FetchInvoiceDetailsFunction`
 
 #### Amazon DynamoDB
 

@@ -7,7 +7,7 @@ pre: " <b> 3.2 </b> "
 
 #### Overview
 
-In this step, you will create the first Lambda Function named **UploadInvoiceFileFunction**. This function is triggered when a user uploads an invoice file to the S3 bucket. It then uses **Amazon Textract** to extract text, **Amazon Bedrock** to analyze and understand the content, and finally stores the extracted information into **DynamoDB**.
+In this step, you will create the first Lambda Function named **UploadInvoiceFileFunction**. This function is triggered when a user uploads an invoice file to the S3 bucket. It then uses **Amazon Textract** to extract text, **OpenAI API** to analyze and understand the content, and finally stores the extracted information into **DynamoDB**.
 
 ---
 
@@ -18,7 +18,7 @@ In this step, you will create the first Lambda Function named **UploadInvoiceFil
 ![Open Lambda](/images/3.lambdafunctions/3.2-uploadinvoicelambda/001-openlambda.png)
 
 {{% notice warning %}}
-⚠️ **Note**: Make sure you are in the correct **Region: N. Virginia (us-east-1)** before creating the Lambda function. This is the region where you created the S3 bucket, DynamoDB table, and registered Amazon Bedrock. If you choose the wrong region, Lambda won't be able to access the system's other services.
+⚠️ **Note**: Make sure you are in the correct **Region: Singapore (ap-southeast-1)** before creating the Lambda function. This is the region where you created the S3 bucket, DynamoDB table. If you choose the wrong region, Lambda won't be able to access the system's other services.
 {{% /notice %}}
 
 2. Click **Create function**.

@@ -7,7 +7,7 @@ pre: " <b> 3.3 </b> "
 
 #### Tổng quan
 
-Trong bước này, bạn sẽ thực hiện kiểm thử Lambda Function **UploadInvoiceFileFunction** bằng cách tải lên một tệp hóa đơn mẫu vào S3 bucket. Việc kiểm thử nhằm xác nhận toàn bộ quá trình xử lý, từ khi người dùng tải file lên S3, trích xuất dữ liệu bằng Textract, phân tích bằng Bedrock, đến khi lưu dữ liệu vào DynamoDB, hoạt động chính xác.
+Trong bước này, bạn sẽ thực hiện kiểm thử Lambda Function **UploadInvoiceFileFunction** bằng cách tải lên một tệp hóa đơn mẫu vào S3 bucket. Việc kiểm thử nhằm xác nhận toàn bộ quá trình xử lý, từ khi người dùng tải file lên S3, trích xuất dữ liệu bằng Textract, phân tích bằng OpenAI, đến khi lưu dữ liệu vào DynamoDB, hoạt động chính xác.
 
 ---
 
@@ -15,7 +15,7 @@ Trong bước này, bạn sẽ thực hiện kiểm thử Lambda Function **Uplo
 
 Trước khi thực hiện kiểm thử Lambda Function, bạn cần chuẩn bị tệp hóa đơn mẫu để tải lên. Vui lòng tải tệp sau về máy của bạn:
 
--   [Tải file mẫu demo_invoice.png](/images/demo_invoice.png)
+-   [Tải file mẫu demo_invoice.png](https://drive.google.com/file/d/1EcicofEM9axww3cfS1TMa0cX37S0otDx/view?usp=drive_link)
 
 {{% notice info %}}
 🔧 **Ghi chú**: Nếu bạn sử dụng tệp hóa đơn khác, hãy đổi tên thành **demo_invoice.png** trước khi tải lên thư mục **uploads/** trong S3.
